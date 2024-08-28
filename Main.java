@@ -7,8 +7,13 @@ public class Main {
         Institucion institucion = new Institucion("Papu College ");
         
         Alumno a1 = new Alumno("Pablo","Fuenzalida",20,"21.434.564-1");
+        //a1.agregarNota(1.7);
         Alumno a2 = new Alumno("Gabriel","Gunther",21,"21.383.321-0");
-        Alumno a3 = new Alumno("Marcelo","Gallardo",19,"21.878.090-4");
+        //a2.agregarNota(5.9);
+        Alumno a3 = new Alumno("skibidi","diego",19,"21.878.090-4");
+        //a3.agregarNota(7.0);
+
+
 
         //Creamos Profesores
         Profesor p1 = new Profesor("Claudio","Cubillos",58,"10.677.234-1");
@@ -23,6 +28,8 @@ public class Main {
 
         
         institucion.agregarCurso(c1);
+        institucion.agregarProfesor(p1);
+        institucion.agregarProfesor(p2);
 
         c1.agregarAlumnoARecurso(a1);
         c1.agregarAlumnoARecurso(a2);
@@ -33,89 +40,198 @@ public class Main {
         
         c1.agregarRecursoACurso(r1);
         c1.agregarRecursoACurso(r2);
+        int opcion;
 
-        while(true)
-        {
-                System.out.println(" -------------------------");
-                System.out.println("|     Menu de Opciones    |");
-                System.out.println(" -------------------------");
-                System.out.println("| 1.- Curso               |");
-                System.out.println("| 2.- Profesor            |");
-                System.out.println("| 3.- Alumno              |");
-                System.out.println(" -------------------------");
-                System.out.print("Seleccione una opcion: ");
-                String leido = lector.readLine();
-                int opcion = Integer.parseInt(leido);
+        do {
+            System.out.println(" -------------------------");
+            System.out.println("|     Menu de Opciones    |");
+            System.out.println(" -------------------------");
+            System.out.println("| 1.- Administrador       |");
+            System.out.println("| 2.- Curso               |");
+            System.out.println("| 3.- Profesor            |");
+            System.out.println("| 4.- Alumno              |");
+            System.out.println(" -------------------------");
+            System.out.print("Seleccione una opcion: ");
+            String leido = lector.readLine();
+            opcion = Integer.parseInt(leido);
 
-                switch(opcion)
+            switch(opcion)
+            {
+                case 1:
                 {
-                    case 1:
-                    {
+                    do {
+                        System.out.println("\n\n ------------------------------------");
+                        System.out.println("| Bienvenido al menu Administrador!! |");
+                        System.out.println(" ------------------------------------");
+                        System.out.println("| 1.- Agregar Curso                  |");
+                        System.out.println("| 2.- Eliminar Curso                 |");
+                        System.out.println("| 3.- Mostrar Cursos                 |");
+                        System.out.println("| 4.- Agregar Recursos A Curso       |");
+                        System.out.println("| 5.- Eliminar Recurso De Curso      |");
+                        System.out.println("| 6.- Volver al menu                 |");
+                        System.out.println(" ------------------------------------");
+                        System.out.print("Seleccione una opcion: ");
+                        leido = lector.readLine();
+                        opcion = Integer.parseInt(leido);
+                        switch(opcion) {
+                            case 1: {
+                                institucion.crearCurso();
+                                lector.readLine();
+                                break;
+                            }
+
+                            case 2: {
+                                institucion.eliminarCurso();
+                                lector.readLine();
+                                break;
+                            }
+                            case 3: {
+                                institucion.mostrarCursos();
+                                lector.readLine();
+                                break;
+                            }
+                            case 4: {
+                                //add recu
+                                institucion.crearRecurso();
+                                lector.readLine();
+                                break;
+                            }
+                            case 5:{
+                                //eliminar recurso
+                                break;
+                            }
+                            case 6:{
+                                //mostrar recurso
+                                break;
+                            }
+                            case 7: {
+                                System.out.println("Saliendo del menu.....");
+                                break;
+                            }
+                            default:
+                                System.out.println("Opción no válida.");
+                                break;
+                        }
+                    }while(opcion != 7);
+                    break;
+                }
+                    
+                case 2:
+                {
+                    do {
                         System.out.println("\n\n ----------------------------");
                         System.out.println("| Bienvenido al menu Curso!! |");
                         System.out.println(" ----------------------------");
                         System.out.println("| 1.- Agregar Curso          |");
                         System.out.println("| 2.- Eliminar Curso         |");
                         System.out.println("| 3.- Mostrar Cursos         |");
-                        System.out.println("| 4.- Mostrar Recursos       |");
+                        System.out.println("| 4.- Volver al menu         |");
                         System.out.println(" ----------------------------");
                         System.out.print("Seleccione una opcion: ");
                         leido = lector.readLine();
                         opcion = Integer.parseInt(leido);
+                        switch(opcion) {
+                            case 1: {
+                                institucion.crearCurso();
+                                lector.readLine();
+                                break;
+                            }
 
-                        switch(opcion)
-                        {
-                            case 1:
-                                {
-                                    
-                                    break;
-                                }
-                            
-                            case 2:
-                                {
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    institucion.mostrarCursos();
-                                    lector.readLine();
-                                    break;
-                                }
-                            case 4:
-                                {
-                                    break;
-                                }
-                                default:
+                            case 2: {
+                                institucion.eliminarCurso();
+                                lector.readLine();
+                                break;
+                            }
+                            case 3: {
+                                institucion.mostrarCursos();
+                                lector.readLine();
+                                break;
+                            }
+                            case 4: {
+                                System.out.println("Saliendo del menu.....");
+                                break;
+                            }
+                            default:
                                 System.out.println("Opción no válida.");
                                 break;
                         }
-                    }
-
-                    case 2:
-                    {
-                        System.out.println(" \n-------------------------------");
-                        System.out.println("| Bienvenido al menu Profesor !!|");
+                    }while(opcion != 5);
+                    break;
+                }
+                
+                case 3:
+                {
+                    do {
+                        System.out.println("\n\n -------------------------------");
+                        System.out.println("| Bienvenido al menu Profesor!! |");
                         System.out.println(" -------------------------------");
-                        System.out.println("| 1.- Agregar Profesor          |");
+                        System.out.println("| 1.- Mostrar Cursos            |");
+                        System.out.println("| 2.- Mostrar Recursos          |");
+                        System.out.println("| 3.- Volver al menu            |");
                         System.out.println(" -------------------------------");
-                        break;
-                    }
+                        System.out.print("Seleccione una opcion: ");
+                        leido = lector.readLine();
+                        opcion = Integer.parseInt(leido);
+                        switch(opcion) {
+                            case 1: {
+                                institucion.mostrarCursos();
+                                lector.readLine();
+                                break;
+                            }
 
-                    case 3:
-                    {
-                        System.out.println(" \n-----------------------------");
-                        System.out.println("| Bienvenido al menu Alumno !!|");
-                        System.out.println(" -----------------------------");
-                        System.out.println("| 1.- Agregar Alumno          |");
-                        System.out.println("| 2.- Eliminar Alumno         |");
-                        System.out.println(" -----------------------------");
-                        break;    
-                    }
-          
+                            case 2: {
+                                //mostrar recursos
+                                break;
+                            }
+                            case 3:{
+                                System.out.println("Saliendo del menu.....");
+                                break;
+                            }
+                            default:
+                                System.out.println("Opción no válida.");
+                                break;
+                        }
+                    }while(opcion != 3);
+                    break;
+                }
+
+                case 4:
+                {
+                    do {
+                        System.out.println("\n\n -----------------------------");
+                        System.out.println("| Bienvenido al menu Alumno!!   |");
+                        System.out.println(" -------------------------------");
+                        System.out.println("| 1.- Mostrar Recursos          |");
+                        System.out.println("| 2.- Ver Calificaciones        |");
+                        System.out.println("| 3.- Volver al menu            |");
+                        System.out.println(" -------------------------------");
+                        System.out.print("Seleccione una opcion: ");
+                        leido = lector.readLine();
+                        opcion = Integer.parseInt(leido);
+                        switch(opcion) {
+                            case 1: {
+                                //mostrar recurso
+                                break;
+                            }
+                            case 2:{
+                                //Institucion.mostrarNotasPorAlumno();
+                            }
+                            case 3:{
+                                System.out.println("Saliendo del menu.....");
+                                break;
+                            }
+                            default:
+                                System.out.println("Opción no válida.");
+                                break;
+                        }
+                    }while(opcion != 2);
+                    break;
+                }
+                default:
+                    System.out.println("Opción no válida.");
+                    break;
+
             }
-        }
+        }while(opcion != 4);
     }
 }
-
-
-
