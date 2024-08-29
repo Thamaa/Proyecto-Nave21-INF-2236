@@ -6,7 +6,7 @@ public class Curso {
     private ArrayList<Recurso> recursos;
     private HashMap<Integer, Recurso> recursosMap;
     private ArrayList<Alumno> alumnos; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
-    private Map<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
+    private HashMap<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
 
     public Curso(int cursoId, String nombre) {
         this.cursoId = cursoId;
@@ -51,6 +51,14 @@ public class Curso {
         return recursos;
     }
 
+    public HashMap<Integer, Recurso> getRecursosMap() {
+        return recursosMap;
+    }
+
+    public HashMap<String, Alumno> getAlumnosMap() {
+        return alumnosMap;
+    }
+
     //agregar y buscar
     
     public void agregarRecursoACurso(Recurso recurso){
@@ -76,25 +84,7 @@ public class Curso {
     }
     
 
-
-    public List<Float> getNotasPorRutAlumno(String rut)
-    {
-        Alumno alumno = buscarAlumnoPorRut(rut);
-        if(alumno != null)
-        {
-            return alumno.getNotas();
-        }
-        else
-        {
-            System.out.println("Alumno no encontrado");
-
-        }
-    }
-
 // METODOS MOSTRAR
-
-       
-    
     public void mostrarRecursos(){
         System.out.println("-----------------------------------");
         System.out.println("Los Recursos son :");
@@ -112,59 +102,9 @@ public class Curso {
             System.out.println("Nombre: "+ alumno.getNombre() +", Apellido: "+ alumno.getApellido()+".");
         }
     }
+
+
     //Metodos crear
-    /*public void crearRecurso()throws IOException
-    {
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));       
-        int id = recursos.size() + 1;
-        System.out.println("El ID del Recurso será: " + id);
-        
-        System.out.print("Ingrese el nombre del Recurso: ");
-        String nombreRecurso = lector.readLine();
-        
-        System.out.print("Ingrese la descripcion del Recurso: ");
-        String descripcionRecurso = lector.readLine();
-        
-        System.out.println("Ingrese el nombre del Profesor:");
-        String nombreProfesor = lector.readLine();
-        
-        System.out.println("Ingrese el apellido del Profesor:");
-        String apellidoProfesor = lector.readLine();
-
-        System.out.println("Ingrese el apellido del Profesor:");
-        String edadProfesorString = lector.readLine();
-        int edadProfesor = Integer.parseInt(edadProfesorString);
-
-        System.out.println("Ingrese el apellido del Profesor:");
-        String rutString = lector.readLine();
-
-        Profesor profesor = new Profesor(nombreProfesor, apellidoProfesor, edadProfesor, rutString);
-
-        Recurso nuevoRecurso = new Recurso( nombreRecurso,descripcionRecurso, id,profesor);
-        agregarRecursoACurso(nuevoRecurso);
-
-    }*/
-
-    public void eliminarRecurso()throws IOException
-    {
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Los Recursos del curso "+ getNombre() +" son : ");
-        for(Recurso recurso : recursos){
-            System.out.println("ID del Recurso : "+ recurso.getRecursoID());
-            System.out.println("Nombre del Recurso : "+ recurso.getNombreRecurso()+"\n");
-        }
-        
-        System.out.print("Ingrese el ID del Recurso a eliminar: ");
-        int id = Integer.parseInt(lector.readLine());
-        Recurso recurso = buscarRecursoPorID(id);
-        if(recurso != null){
-            recursos.remove(recurso);
-            recursosMap.remove(id);
-            System.out.println("Recurso eliminado exitosamente");
-        }else{
-            System.out.println("Recurso no encontrado");
-        }
-    }
     public void crearAlumno()throws IOException
     {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -183,6 +123,14 @@ public class Curso {
         
         Alumno nuevoAlumno = new Alumno(nombre, apellido, edad, rut);
         agregarAlumnoARecurso(nuevoAlumno);
+    }
+
+
+
+    //METODOS ELIMINAR
+    //Eliminar Recurso de Curso
+    public void eliminarRecursoDeCurso(Recurso recurso){
+        recursos.remove(recurso);
     }
 
 }
