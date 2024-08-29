@@ -7,11 +7,9 @@ public class Main {
         Institucion institucion = new Institucion("Papu College ");
         
         Alumno a1 = new Alumno("Pablo","Fuenzalida",20,"21.434.564-1");
-        //a1.agregarNota(1.7);
         Alumno a2 = new Alumno("Gabriel","Gunther",21,"21.383.321-0");
-        //a2.agregarNota(5.9);
         Alumno a3 = new Alumno("skibidi","diego",19,"21.878.090-4");
-        //a3.agregarNota(7.0);
+
 
 
 
@@ -71,7 +69,8 @@ public class Main {
                         System.out.println("| 6.- Mostrar Profesores             |");
                         System.out.println("| 7.- Agregar Recursos A Curso       |");
                         System.out.println("| 8.- Eliminar Recurso De Curso      |");
-                        System.out.println("| 9.- Volver al menu                 |");
+                        System.out.println("| 9.- Mostrar Recursos               |");
+                        System.out.println("| 10.- Volver al menu                |");
                         System.out.println(" ------------------------------------");
                         System.out.print("Seleccione una opcion: ");
                         leido = lector.readLine();
@@ -80,39 +79,36 @@ public class Main {
                         {
                             case 1: {
                                 institucion.crearCurso();
-                                lector.readLine();
-                                
+                                lector.readLine(); 
                                 break;
                             }
 
                             case 2: {
                                 institucion.eliminarCurso();
                                 lector.readLine();
-                                
                                 break;
                             }
                             case 3: {
                                 institucion.mostrarCursos();
                                 lector.readLine();
-                                
                                 break;
                             }
                             case 4: {
                                 //Agregar Profesor
                                 institucion.crearProfesor();
                                 lector.readLine();
-                                
                                 break;
                             }
                             case 5:{
                                 //Eliminar Profesor
+                                institucion.eliminarProfesor();
+                                lector.readLine();
                                 break;
                             }
                             case 6:{
                                 //Mostrar Profesores
                                 institucion.mostrarProfesores();
                                 lector.readLine();
-                                
                                 break;
                             }
                             case 7:{
@@ -123,11 +119,16 @@ public class Main {
                             }
                             case 8:{
                                 //Eliminar Recurso De Curso
-                                
-                                
+                                institucion.eliminarRecurso();
+                                lector.readLine();
                                 break;
                             }
-                            case 9: {
+                            case 9:{
+                                //Mostrar Recursos
+                                institucion.mostrarTodosLosRecursos();
+                                break;
+                            }
+                            case 10: {
                                 System.out.println("Saliendo del menu.....");
                                 break;
                             }
@@ -135,7 +136,7 @@ public class Main {
                                 System.out.println("Opción no válida.");
                                 break;
                         }
-                    }while(opcion != 7);
+                    }while(opcion != 11);
                     break;
                 }
                     
@@ -158,17 +159,20 @@ public class Main {
                             case 1: {
                                 institucion.crearCurso();
                                 lector.readLine();
+
                                 break;
                             }
 
                             case 2: {
                                 institucion.eliminarCurso();
                                 lector.readLine();
+
                                 break;
                             }
                             case 3: {
                                 institucion.mostrarCursos();
                                 lector.readLine();
+                                
                                 break;
                             }
                             case 4: {
@@ -187,18 +191,19 @@ public class Main {
                 {
                     do 
                     {
-                        System.out.println("\n\n -------------------------------");
-                        System.out.println("| Bienvenido al menu Profesor!! |");
-                        System.out.println(" -------------------------------");
-                        System.out.println("| 1.- Mostrar Cursos            |");
-                        System.out.println("| 2.- Mostrar Recursos          |");
-                        System.out.println("| 3.- Volver al menu            |");
-                        System.out.println(" -------------------------------");
+                        System.out.println("\n\n -----------------------------------");
+                        System.out.println("| Bienvenido al menu Profesor       |");
+                        System.out.println(" -----------------------------------");
+                        System.out.println("| 1.- Mostrar Cursos                |");
+                        System.out.println("| 2.- Mostrar Recursos              |");
+                        System.out.println("| 3.- Volver al menu                |");
+                        System.out.println(" -----------------------------------");
                         System.out.print("Seleccione una opcion: ");
                         leido = lector.readLine();
                         opcion = Integer.parseInt(leido);
                         switch(opcion) {
                             case 1: {
+                                //Mostrar Cursos
                                 institucion.mostrarCursos();
                                 lector.readLine();
                                 break;
@@ -206,7 +211,8 @@ public class Main {
 
                             case 2: {
                                 //mostrar recursos
-                                
+                                institucion.mostrarRecursosDeProfesor();
+                                lector.readLine();
                                 break;
                             }
                             case 3:{
@@ -225,11 +231,10 @@ public class Main {
                 {
                     do {
                         System.out.println("\n\n -----------------------------");
-                        System.out.println("| Bienvenido al menu Alumno!!   |");
+                        System.out.println("| Bienvenido al menu Alumno     |");
                         System.out.println(" -------------------------------");
                         System.out.println("| 1.- Mostrar Recursos          |");
-                        System.out.println("| 2.- Ver Calificaciones        |");
-                        System.out.println("| 3.- Volver al menu            |");
+                        System.out.println("| 2.- Volver al menu            |");
                         System.out.println(" -------------------------------");
                         System.out.print("Seleccione una opcion: ");
                         leido = lector.readLine();
@@ -237,12 +242,12 @@ public class Main {
                         switch(opcion) {
                             case 1: {
                                 //mostrar recurso
+                                institucion.mostrarRecursoAlumno();
+                                lector.readLine();
                                 break;
                             }
+
                             case 2:{
-                                //Institucion.mostrarNotasPorAlumno();
-                            }
-                            case 3:{
                                 System.out.println("Saliendo del menu.....");
                                 break;
                             }
