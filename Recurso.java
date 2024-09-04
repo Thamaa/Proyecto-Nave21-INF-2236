@@ -47,6 +47,10 @@ public class Recurso {
         return nombreRecurso;
     }
     
-
-
+    public void eliminarProfesor() {
+        this.profesor = null;
+    }
 }
+
+
+

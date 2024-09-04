@@ -4,7 +4,6 @@ public class Curso {
     private int cursoId;
     private String nombre;
     private ArrayList<Recurso> recursos;
-    private HashMap<Integer, Recurso> recursosMap;
     private ArrayList<Alumno> alumnos; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
     private HashMap<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
 
@@ -12,7 +11,6 @@ public class Curso {
         this.cursoId = cursoId;
         this.nombre = nombre;
         recursos = new ArrayList<>();
-        recursosMap = new HashMap<>();
         alumnos = new ArrayList<>();
         alumnosMap = new HashMap<>();
     }
@@ -39,9 +37,7 @@ public class Curso {
         this.recursos = recursos;
     }
 
-    public void setRecursosMap(HashMap<Integer, Recurso> recursosMap){
-        this.recursosMap = recursosMap;
-    }
+
 
     public void setAlumnos(ArrayList<Alumno> alumnos){
         this.alumnos = alumnos;
@@ -51,24 +47,19 @@ public class Curso {
         return recursos;
     }
 
-    public HashMap<Integer, Recurso> getRecursosMap() {
-        return recursosMap;
-    }
+
 
     public HashMap<String, Alumno> getAlumnosMap() {
         return alumnosMap;
     }
 
-    //agregar y buscar
+    //METODOS AGREGAR Y BUSCAR
     
     public void agregarRecursoACurso(Recurso recurso){
-        recursosMap.put(recurso.getRecursoID(), recurso);
         this.recursos.add(recurso);
     }
 
-    public Recurso buscarRecursoPorID(Integer recurID){
-        return recursosMap.get(recurID);
-    }
+
     
     public void agregarAlumnoARecurso(Alumno alumno) {
         this.alumnos.add(alumno);
@@ -82,21 +73,48 @@ public class Curso {
     public void agregarRecurso(Recurso recurso){
         recursos.add(recurso);
     }
+
+    public Recurso buscarRecursoPorID(int id) {
+        for (Recurso recurso : recursos) {
+            if (recurso.getRecursoID() == id) {
+                return recurso;
+            }
+        }
+        return null;
+    }
+
+    //AGREGAR PROFESOR A RECURSO
+    public void agregarProfesorARecurso(Recurso recurso, Profesor profesor) {
+        recurso.agregarProfesorARecurso(profesor);
+    }
     
 
 // METODOS MOSTRAR
-    public void mostrarRecursos(){
-        System.out.println("-----------------------------------");
+
+//MOSTRAR RECURSOS
+
+    public void mostrarRecursos() {
+        System.out.println("----------------------------------------------------------------------------------");
         System.out.println("Los Recursos son :");
-        if(recursos.isEmpty()){
+        if (recursos.isEmpty()) {
             System.out.println("No hay recursos en este curso");
-            System.out.println("-----------------------------\n");
-        }
-        for ( Recurso recurso : recursos){
-            System.out.println("ID del Recurso: " + recurso.getRecursoID() + "\nNombre del Recurso: " + recurso.getNombreRecurso() + " Nombre Del Docente: " + recurso.getProfesor().getNombre()+" Apellido: "+ recurso.getProfesor().getApellido()+"\n");
+            System.out.println("----------------------------------------------------------------------------------\n");
+        } else {
+            for (Recurso recurso : recursos) {
+                System.out.println("ID del Recurso: " + recurso.getRecursoID());
+                System.out.println("Nombre del Recurso: " + recurso.getNombreRecurso());
+                if (recurso.getProfesor() != null) {
+                    System.out.println("Nombre Del Docente: " + recurso.getProfesor().getNombre() + " Apellido: " + recurso.getProfesor().getApellido());
+                } else {
+                    System.out.println("Actualmente este recurso no tiene un profesor asignado");
+                }
+                System.out.println();
+            }
+            System.out.println("----------------------------------------------------------------------------------\n");
         }
     }
 
+    //MOSTRAR NOMBRES DE ALUMNOS
     public void mostrarNombreAlumnos(){
         for(Alumno alumno : alumnos){
             System.out.println("Nombre: "+ alumno.getNombre() +", Apellido: "+ alumno.getApellido()+".");
@@ -104,7 +122,9 @@ public class Curso {
     }
 
 
-    //Metodos crear
+    //METODOS CREAR
+
+    //CREAR ALUMNO
     public void crearAlumno()throws IOException
     {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -128,9 +148,19 @@ public class Curso {
 
 
     //METODOS ELIMINAR
-    //Eliminar Recurso de Curso
+    public void eliminarProfesorDeRecursos(Profesor profesor) {
+        for (Recurso recurso : recursos) {
+            if (recurso.getProfesor() != null && recurso.getProfesor().equals(profesor)) {
+                recurso.eliminarProfesor();
+            }
+        }
+    }
+
+    //ELIMINAR RECUSO DE CURSO
     public void eliminarRecursoDeCurso(Recurso recurso){
         recursos.remove(recurso);
     }
+
+    
 
 }
