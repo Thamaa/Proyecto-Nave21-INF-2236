@@ -46,6 +46,49 @@ public class Institucion{
         System.out.println("Curso creado exitosamente");
     }
 
+    //METODO CREAR ALUMNO
+    public void crearYAgregarAlumnoACurso()throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Ingrese el nombre del alumno: ");
+        String nombre = lector.readLine();
+        
+        System.out.print("Ingrese el apellido del alumno: ");
+        String apellido = lector.readLine();
+        
+        System.out.print("Ingrese la edad del alumno: ");
+        int edad = Integer.parseInt(lector.readLine());
+        
+        System.out.print("Ingrese el rut del alumno: ");
+        String rut = lector.readLine();
+        
+        
+        Alumno nuevoAlumno = new Alumno(nombre, apellido, edad, rut);
+
+        System.out.println("Seleccione el curso al cual desea agregar el alumno:");
+        for (int i = 0; i < cursos.size(); i++) {
+            System.out.println((i + 1) + ". " + cursos.get(i).getNombre());
+        }
+        System.out.print("Ingrese el número del curso: ");
+        int posicionCurso = Integer.parseInt(lector.readLine()) - 1;
+
+        if (posicionCurso < 0 || posicionCurso >= cursos.size()) {
+            System.out.println("Curso no válido.");
+            return;
+        }
+
+        Curso cursoSeleccionado = cursos.get(posicionCurso);
+        
+        for (Curso cursoActual : cursos) {
+            if (cursoActual.getNombre().equals(cursoSeleccionado.getNombre())) {
+                cursoActual.agregarAlumnoARecurso(nuevoAlumno);
+                System.out.println("Alumno creado exitosamente");
+                return;
+            }
+        }
+        
+        System.out.println("No se encontró el curso especificado.");
+    }
+
 
     //METODO AGREGAR PROFESOR A RECURSO 
     public void agregarProfesorARecurso() throws IOException {
@@ -153,25 +196,33 @@ public class Institucion{
         
         Curso cursoSeleccionado = cursos.get(cursoIndex);
         
-
         System.out.println("Seleccione el profesor para el recurso:");
         for (int i = 0; i < profesores.size(); i++) {
             System.out.println((i + 1) + ". " + profesores.get(i).getNombre() + " " + profesores.get(i).getApellido());
         }
         System.out.print("Ingrese el número del profesor: ");
-        int profesorIndex = Integer.parseInt(lector.readLine()) - 1;
+        int profeElegido = Integer.parseInt(lector.readLine()) - 1;
         
-        if (profesorIndex < 0 || profesorIndex >= profesores.size()) {
+        if (profeElegido < 0 || profeElegido >= profesores.size()) {
             System.out.println("Profesor no válido.");
             return;
         }
         
-        Profesor profesorSeleccionado = profesores.get(profesorIndex);
+        Profesor profesorSeleccionado = profesores.get(profeElegido);
         
-
-        int id = cursoSeleccionado.getRecursos().size() + 1;
-        System.out.println("El ID del Recurso será: " + id);
-
+        System.out.print("Ingrese el ID del Recurso: ");
+        int id = Integer.parseInt(lector.readLine());
+        
+        // Verificar que el ID no choque con ningún otro recurso en otros cursos
+        for (Curso curso : cursos) {
+            for (Recurso recurso : curso.getRecursos()) {
+                if (recurso.getRecursoID() == id) {
+                    System.out.println("El ID del recurso ya está en uso en otro curso. Por favor, elija otro ID.");
+                    return;
+                }
+            }
+        }
+        
         System.out.print("Ingrese el nombre del Recurso: ");
         String nombreRecurso = lector.readLine();
         
@@ -180,13 +231,39 @@ public class Institucion{
         
         Recurso nuevoRecurso = new Recurso(nombreRecurso, descripcionRecurso, id, profesorSeleccionado);
         
-        
         cursoSeleccionado.agregarRecurso(nuevoRecurso);
         
         System.out.println("Recurso agregado exitosamente al curso " + cursoSeleccionado.getNombre());
     }
 
     //METODOS ELIMINAR
+
+    //METODO ELIMINAR ALUMNO
+    public void eliminarAlumno()throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("\n\nLos alumnos de la institucion "+ getNombreInstitucion() +" son : ");
+        for(Curso curso : cursos){
+            System.out.println("Curso : "+ curso.getNombre());
+            curso.mostrarNombreAlumnos();
+            System.out.println("----------------------------------------------------------------------------------\n");
+        }
+        
+        System.out.print("Ingrese el rut del alumno a eliminar: ");
+        String rut = lector.readLine();
+        
+        
+        for(Curso curso : cursos){
+            for(Alumno alumno : curso.getAlumnos()){
+                if(alumno.getRut().equals(rut)){
+                    curso.eliminarAlumnoDeCurso(alumno);
+                    System.out.println("Alumno eliminado exitosamente");
+                    return;
+                }
+            }
+        }
+        
+        System.out.println("No se encontró un alumno con el nombre y apellido especificado.");
+    }
 
     //METODO ELIMINAR CURSO
         public void eliminarCurso()throws IOException
@@ -285,6 +362,17 @@ public class Institucion{
 
     //METODOS MOSTRAR
 
+    //METODO MOSTRAR ALUMNOS 
+    public void mostrarAlumnos() {
+        System.out.println("\n\n----------------------------------------------------------------------------------");
+        System.out.println("Los alumnos de la institucion "+ getNombreInstitucion() +" son : ");
+        for(Curso curso : cursos){
+            System.out.println("Curso : "+ curso.getNombre());
+            curso.mostrarNombreAlumnos();
+            System.out.println("----------------------------------------------------------------------------------\n");
+        }
+    }
+
     //METODO MOSTRAR RECURSOS DEL PROFESOR
     public void mostrarRecursosDeProfesor() throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -370,27 +458,83 @@ public class Institucion{
             
             Curso cursoSeleccionado = cursos.get(posicionCurso);
             
-            System.out.println("Los Recursos del curso "+ cursoSeleccionado.getNombre() +" son : ");
+            System.out.println("Los Recursos del curso "+ cursoSeleccionado.getNombre() +" son: ");
             for(Recurso recurso : cursoSeleccionado.getRecursos()){
-                System.out.println("ID del Recurso : "+ recurso.getRecursoID());
-                System.out.println("Nombre del Recurso : "+ recurso.getNombreRecurso()+"\n");
+                System.out.println("ID del Recurso: "+ recurso.getRecursoID());
+                System.out.println("Nombre del Recurso: "+ recurso.getNombreRecurso()+"\n");
             }
             
-            System.out.print("Ingrese el ID del Recurso a ver: ");
+            System.out.print("Ingrese el ID del Recurso que desea ver: ");
             int id = Integer.parseInt(lector.readLine());
-            
+            System.out.println("");
             Recurso recurso = cursoSeleccionado.buscarRecursoPorID(id);
             if(recurso != null){
-                System.out.println("Nombre del Recurso : "+ recurso.getNombreRecurso());
-                System.out.println("Descripcion del Recurso : "+ recurso.getDescripcionRec());
-                System.out.println("Profesor del Recurso : "+ recurso.getProfesor().getNombre()+" "+ recurso.getProfesor().getApellido()+"\n");
+                System.out.println("Nombre del Recurso: "+ recurso.getNombreRecurso());
+                System.out.println("Descripcion del Recurso: "+ recurso.getDescripcionRec());
+                System.out.println("Profesor del Recurso: "+ recurso.getProfesor().getNombre()+" "+ recurso.getProfesor().getApellido()+"\n");
             } else {
                 System.out.println("Recurso no encontrado");
             }
         
     }
 
+    public void mostrarCursoIdNombre()throws IOException
+    {
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el Nombre o ID del curso: ");
+        String leido = lector.readLine();
 
+        Curso cursoEncontrado = null;
+
+        try {
+            int cursoId = Integer.parseInt(leido);
+            cursoEncontrado = buscarCurso(cursoId); 
+
+        }   catch (NumberFormatException e) {
+        
+        cursoEncontrado = buscarCurso(leido); 
+        }
+        if (cursoEncontrado != null) {
+            System.out.println("\n\n----------------------------------------------------------------------------------");
+            System.out.println("Detalles del curso:");
+            System.out.println("ID del Curso: " + cursoEncontrado.getCursoId());
+            System.out.println("Nombre del Curso: " + cursoEncontrado.getNombre());
+            System.out.println("\nAlumnos del curso:");
+            cursoEncontrado.mostrarNombreAlumnos();
+            System.out.println("\nRecursos del curso:");
+            cursoEncontrado.mostrarRecursos();
+            } 
+        else 
+        {
+        System.out.println("No se encontró un curso con el ID o Nombre proporcionado.");
+        }
+    }
+
+    //METODO BUSCAR CURSO POR ID Y POR NOMBRE 
+
+    public Curso buscarCurso(int cursoId)
+    {
+        for(Curso curso: cursos)
+        {
+            if(curso.getCursoId() == cursoId)
+            {
+                return curso;
+            }
+        }
+        return null;
+    }
+
+    public Curso buscarCurso(String nombre)
+    {
+        for(Curso curso: cursos)
+        {
+            if(curso.getNombre().equalsIgnoreCase(nombre))
+            {
+                return curso;
+            }
+        }
+        return null;
+    }
 }
 
 

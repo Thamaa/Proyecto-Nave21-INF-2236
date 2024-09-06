@@ -4,8 +4,8 @@ public class Curso {
     private int cursoId;
     private String nombre;
     private ArrayList<Recurso> recursos;
-    private ArrayList<Alumno> alumnos; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
-    private HashMap<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE ALA COLECCION ANIDADA
+    private ArrayList<Alumno> alumnos; //ESTA LISTA ES EXTRA Y NO PERTENECE A LA COLECCION ANIDADA
+    private HashMap<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE A LA COLECCION ANIDADA
 
     public Curso(int cursoId, String nombre) {
         this.cursoId = cursoId;
@@ -36,8 +36,13 @@ public class Curso {
     public void setRecursos(ArrayList<Recurso> recursos){
         this.recursos = recursos;
     }
+    public void getRecursos(ArrayList<Recurso> recursos){
+        this.recursos = recursos;
+    }
 
-
+    public ArrayList<Alumno> getAlumnos(){
+        return alumnos;
+    }
 
     public void setAlumnos(ArrayList<Alumno> alumnos){
         this.alumnos = alumnos;
@@ -47,6 +52,9 @@ public class Curso {
         return recursos;
     }
 
+    public void setAlumnosMap(HashMap<String, Alumno> alumnosMap) {
+        this.alumnosMap = alumnosMap;
+    }
 
 
     public HashMap<String, Alumno> getAlumnosMap() {
@@ -54,11 +62,14 @@ public class Curso {
     }
 
     //METODOS AGREGAR Y BUSCAR
-    
-    public void agregarRecursoACurso(Recurso recurso){
-        this.recursos.add(recurso);
+
+    public void agregarRecursoACurso(int recursoID) {
+  
     }
 
+    public void agregarRecursoACurso(Recurso recurso) {
+        this.recursos.add(recurso);
+    }
 
     
     public void agregarAlumnoARecurso(Alumno alumno) {
@@ -94,8 +105,7 @@ public class Curso {
 //MOSTRAR RECURSOS
 
     public void mostrarRecursos() {
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("Los Recursos son :");
+        System.out.println("Los Recursos del curso son :");
         if (recursos.isEmpty()) {
             System.out.println("No hay recursos en este curso");
             System.out.println("----------------------------------------------------------------------------------\n");
@@ -110,14 +120,14 @@ public class Curso {
                 }
                 System.out.println();
             }
-            System.out.println("----------------------------------------------------------------------------------\n");
         }
+        System.out.println("----------------------------------------------------------------------------------");
     }
 
     //MOSTRAR NOMBRES DE ALUMNOS
     public void mostrarNombreAlumnos(){
         for(Alumno alumno : alumnos){
-            System.out.println("Nombre: "+ alumno.getNombre() +", Apellido: "+ alumno.getApellido()+".");
+            System.out.println("Nombre: "+ alumno.getNombre() +", Apellido: "+ alumno.getApellido()+ ", Rut: " +alumno.getRut()+ ".");
         }
     }
 
@@ -154,6 +164,26 @@ public class Curso {
                 recurso.eliminarProfesor();
             }
         }
+    }
+
+    public void eliminarProfesorDeRecursos(String rutProfesor) 
+    {
+        for (Recurso recurso : recursos) 
+        {
+            Profesor profesor = recurso.getProfesor();
+            if (profesor != null && profesor.getRut().equals(rutProfesor)) 
+            {
+                recurso.eliminarProfesor();
+            }
+        }
+    }
+
+
+    
+
+    public void eliminarAlumnoDeCurso(Alumno alumno) {
+        alumnos.remove(alumno);
+        alumnosMap.remove(alumno.getRut());
     }
 
     //ELIMINAR RECUSO DE CURSO
