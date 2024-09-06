@@ -85,7 +85,7 @@ public class Curso {
         recursos.add(recurso);
     }
 
-    public Recurso buscarRecursoPorID(int id) {
+    public Recurso buscarRecurso(int id) {
         for (Recurso recurso : recursos) {
             if (recurso.getRecursoID() == id) {
                 return recurso;
@@ -93,6 +93,16 @@ public class Curso {
         }
         return null;
     }
+
+    public Recurso buscarRecurso(String nombre) {
+        for (Recurso recurso : recursos) {
+            if (recurso.getNombreRecurso().equalsIgnoreCase(nombre)) {
+                return recurso;
+            }
+        }
+        return null;
+    }
+
 
     //AGREGAR PROFESOR A RECURSO
     public void agregarProfesorARecurso(Recurso recurso, Profesor profesor) {

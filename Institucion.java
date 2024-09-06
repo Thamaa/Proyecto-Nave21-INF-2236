@@ -140,7 +140,7 @@ public class Institucion{
         System.out.print("Ingrese el ID del recurso al cual desea asignar el profesor: ");
         int idRecurso = Integer.parseInt(lector.readLine());
     
-        Recurso recursoSeleccionado = cursoSeleccionado.buscarRecursoPorID(idRecurso);
+        Recurso recursoSeleccionado = cursoSeleccionado.buscarRecurso(idRecurso);
         if (recursoSeleccionado == null) {
             System.out.println("No se encontró un recurso con el ID especificado.");
             return;
@@ -326,39 +326,53 @@ public class Institucion{
     //METODO ELIMINAR RECURSO
     public void eliminarRecurso() throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        
+
         System.out.println("Seleccione el curso del cual desea eliminar un recurso:");
         for (int i = 0; i < cursos.size(); i++) {
             System.out.println((i + 1) + ". " + cursos.get(i).getNombre());
         }
         System.out.print("Ingrese el número del curso: ");
         int posicionCurso = Integer.parseInt(lector.readLine()) - 1;
-        
+
         if (posicionCurso < 0 || posicionCurso >= cursos.size()) {
             System.out.println("Curso no válido.");
             return;
         }
-        
+
         Curso cursoSeleccionado = cursos.get(posicionCurso);
-        
+
         System.out.println("Los Recursos del curso " + cursoSeleccionado.getNombre() + " son : ");
         for (Recurso recurso : cursoSeleccionado.getRecursos()) {
             System.out.println("ID del Recurso : " + recurso.getRecursoID());
             System.out.println("Nombre del Recurso : " + recurso.getNombreRecurso() + "\n");
         }
-        
-        System.out.print("Ingrese el ID del Recurso a eliminar: ");
-        int id = Integer.parseInt(lector.readLine());
-        
-        Recurso recurso = cursoSeleccionado.buscarRecursoPorID(id);
-        if (recurso != null) {
-            // Aca se elimina el recurso del curso
-            cursoSeleccionado.eliminarRecursoDeCurso(recurso);
-            System.out.println("Recurso eliminado exitosamente");
+
+        System.out.print("¿Desea buscar el recurso por ID o por nombre? (Ingrese 'ID' o 'nombre'): ");
+        String opcionBusqueda = lector.readLine().trim().toLowerCase();
+
+        Recurso recurso = null;
+
+        if (opcionBusqueda.equals("id")) {
+            System.out.print("Ingrese el ID del Recurso a eliminar: ");
+            int id = Integer.parseInt(lector.readLine());
+            recurso = cursoSeleccionado.buscarRecurso(id);
+        } else if (opcionBusqueda.equals("nombre")) {
+            System.out.print("Ingrese el nombre del Recurso a eliminar: ");
+            String nombre = lector.readLine();
+            recurso = cursoSeleccionado.buscarRecurso(nombre);
         } else {
-            System.out.println("Recurso no encontrado");
+            System.out.println("Opción no válida.");
+            return;
+        }
+
+        if (recurso != null) {
+            cursoSeleccionado.eliminarRecursoDeCurso(recurso);
+            System.out.println("Recurso eliminado exitosamente.");
+        } else {
+            System.out.println("Recurso no encontrado.");
         }
     }
+
 
     //METODOS MOSTRAR
 
@@ -467,7 +481,7 @@ public class Institucion{
             System.out.print("Ingrese el ID del Recurso que desea ver: ");
             int id = Integer.parseInt(lector.readLine());
             System.out.println("");
-            Recurso recurso = cursoSeleccionado.buscarRecursoPorID(id);
+            Recurso recurso = cursoSeleccionado.buscarRecurso(id);
             if(recurso != null){
                 System.out.println("Nombre del Recurso: "+ recurso.getNombreRecurso());
                 System.out.println("Descripcion del Recurso: "+ recurso.getDescripcionRec());
