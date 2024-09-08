@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args)throws IOException {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        Institucion institucion = new Institucion("Papu College ");
+        Institucion institucion = new Institucion("Colegio Los Leones");
         Alumno a1 = new Alumno("Pablo","Fuenzalida",20,"21.434.564-1");
         Alumno a2 = new Alumno("Gabriel","Gunther",21,"21.383.321-0");
         Alumno a3 = new Alumno("Diego","Skibidi",19,"21.878.090-4");

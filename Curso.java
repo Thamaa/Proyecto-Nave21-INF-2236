@@ -4,8 +4,8 @@ public class Curso {
     private int cursoId;
     private String nombre;
     private ArrayList<Recurso> recursos;
-    private ArrayList<Alumno> alumnos; //ESTA LISTA ES EXTRA Y NO PERTENECE A LA COLECCION ANIDADA
-    private HashMap<String,Alumno> alumnosMap; //ESTA LISTA ES EXTRA Y NO PERTENECE A LA COLECCION ANIDADA
+    private ArrayList<Alumno> alumnos; 
+    private HashMap<String,Alumno> alumnosMap;
 
     public Curso(int cursoId, String nombre) {
         this.cursoId = cursoId;
@@ -85,7 +85,7 @@ public class Curso {
         recursos.add(recurso);
     }
 
-    public Recurso buscarRecurso(int id) {
+    public Recurso buscarRecursoPorID(int id) {
         for (Recurso recurso : recursos) {
             if (recurso.getRecursoID() == id) {
                 return recurso;
@@ -93,16 +93,6 @@ public class Curso {
         }
         return null;
     }
-
-    public Recurso buscarRecurso(String nombre) {
-        for (Recurso recurso : recursos) {
-            if (recurso.getNombreRecurso().equalsIgnoreCase(nombre)) {
-                return recurso;
-            }
-        }
-        return null;
-    }
-
 
     //AGREGAR PROFESOR A RECURSO
     public void agregarProfesorARecurso(Recurso recurso, Profesor profesor) {
