@@ -5,5 +5,5 @@ Profesor : Claudio Cubillos.
 Integrantes :
 
 ◆ Vicente Cisternas
-◆ Benjamín Pizarra
+◆ Benjamín Pizarro
 ◆ Simón Vera
