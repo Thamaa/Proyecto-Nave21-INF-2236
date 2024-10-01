@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="504.0" prefWidth="753.0" style="-fx-background-color: #f2f3f5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectosia_aulavirtual.EliminarRecursoController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f2f3f5;" VBox.vgrow="ALWAYS">
+            <children>
+                <Label alignment="CENTER" layoutX="296.0" layoutY="41.0" style="&#10;" text="Aula Virtual" textAlignment="CENTER" wrapText="false">
+                    <font>
+                        <Font name="Candara Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="279.0" layoutY="84.0" style="&#10;" text="Estas en eliminar Recurso" textAlignment="CENTER" textFill="#6b6262" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="19.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="22.0" layoutY="24.0" style="&#10;" text="Technological&#10;School&#10;" textFill="#6b6262" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnVolverMenu" defaultButton="true" layoutX="558.0" layoutY="443.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="167.0" style="-fx-background-color: #1d4e96;" text="Volver al menu admin" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnEliminarRecurso" defaultButton="true" layoutX="341.0" layoutY="428.0" mnemonicParsing="false" style="-fx-background-color: #1d4e96;" text="Eliminar" textFill="WHITE" />
+                <TextField fx:id="inputCursoID" alignment="CENTER" layoutX="278.0" layoutY="373.0" prefHeight="33.0" prefWidth="214.0" promptText="Ingrese el  ID del curso" />
+                <Label layoutX="145.0" layoutY="135.0" prefHeight="21.0" prefWidth="464.0" style="&#10;" text="Los recursos del curso son :" textAlignment="CENTER" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="19.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tablaRecursos" layoutX="138.0" layoutY="167.0" prefHeight="200.0" prefWidth="480.0">
+                    <columns>
+                        <TableColumn fx:id="columnaID" prefWidth="240.5" text="ID" />
+                        <TableColumn fx:id="columnaNombre" prefWidth="238.5" text="Nombre del recurso" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

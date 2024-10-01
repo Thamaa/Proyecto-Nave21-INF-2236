@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="504.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectosia_aulavirtual.MenuController">
+   <children>
+      <Label layoutX="315.0" layoutY="65.0" text="Aula Virtual">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="202.0" layoutY="124.0" text="Seleccione la opcion a la que desea ingresar">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="btnAdministrador" alignment="CENTER" layoutX="156.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="442.0" style="-fx-background-color: #003380;" text="Administrador" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
+      <Button fx:id="btnProfesor" alignment="CENTER" layoutX="156.0" layoutY="306.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="442.0" style="-fx-background-color: #003380;" text="Profesor" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
+      <Button fx:id="btnCurso" alignment="CENTER" layoutX="156.0" layoutY="254.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="442.0" style="-fx-background-color: #003380;" text="Curso" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
+      <Button fx:id="btnAlumno" alignment="CENTER" layoutX="156.0" layoutY="359.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="442.0" style="-fx-background-color: #003380;" text="Alumno" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
+      <Button fx:id="btnSalir" layoutX="340.0" layoutY="447.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #003380;" text="Salir" textFill="WHITE">
+         <effect>
+            <Glow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

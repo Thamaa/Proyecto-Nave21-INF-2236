@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="504.0" prefWidth="753.0" style="-fx-background-color: #f2f3f5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectosia_aulavirtual.AsignarProfesorController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #f2f3f5;" VBox.vgrow="ALWAYS">
+            <children>
+                <Label fx:id="labelAulaVirtual" alignment="CENTER" layoutX="307.0" layoutY="35.0" style="&#10;" text="Aula Virtual" textAlignment="CENTER" wrapText="false">
+                    <font>
+                        <Font name="Candara Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelAsignarProfesor" alignment="CENTER" layoutX="255.0" layoutY="78.0" style="&#10;" text="Estas en asignar Profesor a recurso" textAlignment="CENTER" textFill="#6b6262" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="19.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelTechnologicalSchool" alignment="CENTER" layoutX="80.0" layoutY="35.0" style="&#10;" text="Technological&#10;School&#10;" textFill="#6b6262" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="buttonVolverMenu" defaultButton="true" layoutX="558.0" layoutY="443.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="33.0" prefWidth="167.0" style="-fx-background-color: #1d4e96;" text="Volver al menu" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="buttonAsignar" defaultButton="true" layoutX="358.0" layoutY="418.0" mnemonicParsing="false" style="-fx-background-color: #1d4e96;" text="Asignar" textFill="WHITE" />
+                <TextField fx:id="textFieldRutProfesor" alignment="CENTER" layoutX="291.0" layoutY="368.0" prefHeight="33.0" prefWidth="214.0" promptText="Ingrese el RUT del Profesor a asignar" />
+                <Label fx:id="labelListaProfesores" layoutX="156.0" layoutY="129.0" prefHeight="21.0" prefWidth="464.0" style="&#10;" text="Lista profesores" textAlignment="CENTER" wrapText="false">
+                    <font>
+                        <Font name="Times New Roman Bold" size="19.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tableViewProfesores" layoutX="156.0" layoutY="160.0" prefHeight="200.0" prefWidth="480.0">
+                    <columns>
+                        <TableColumn fx:id="columnNombreProfesor" prefWidth="240.5" text="Nombre Profesor" />
+                        <TableColumn fx:id="columnRutProfesor" prefWidth="238.5" text="Rut" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
