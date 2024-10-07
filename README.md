@@ -17,6 +17,7 @@ Luego de esto lo que usted debe hacer es:
 
 1-Abrir su compilador y seleccionar la carpeta ProyectoSia_AulaVirtual como proyecto
 2-Dentro de la ruta 
+
 C:\Users\"SU USUARIO"\"UBICACION DE GUARDADO DEL ARCHIVO"\Proyecto Sia Final Aula Virtual\ProyectoSIA_AulaVirtual\src\main\java\com\example\proyectosia_aulavirtual
 
 Usted encontrara todas las clases del proyecto 
